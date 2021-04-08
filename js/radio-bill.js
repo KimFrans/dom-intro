@@ -1,5 +1,5 @@
 // get a reference to the sms or call radio buttons
-var billItemTypeRadio = document.querySelector(".billItemTypeRadio")
+//var billItemTypeRadio = document.querySelector(".billItemTypeRadio")
 //get a reference to the add button
 var radioBillAddBtn = document.querySelector(".radioBillAddBtn")
 var callTotalTwo = document.querySelector(".callTotalTwo")
@@ -20,11 +20,11 @@ function radioButtonBill(){
     var billItemTypeRadio = document.querySelector(".billItemTypeRadio")
     var checkedRadioBtn = document.querySelector("input[name='billItemType']:checked");
     if(checkedRadioBtn){
-        var billItemType = checkedRadioBtn.value 
-        if(billItemType === "call"){
+        var billItemTypeRadio = checkedRadioBtn.value 
+        if(billItemTypeRadio === "call"){
             call += 2.75
         }
-        if(billItemType === "sms"){
+        if(billItemTypeRadio === "sms"){
             sms += 0.75
         }
     }
