@@ -1,5 +1,5 @@
 // get a reference to the sms or call radio buttons
-var billItemTypeWithSettings = document.querySelector(".billItemTypeWithSettings")
+//var billItemTypeWithSettings = document.querySelector(".billItemTypeWithSettings")
 // get refences to all the settings fields
 
 //get a reference to the add button
@@ -29,39 +29,25 @@ var totalThree = 0;
 // * add nothing for invalid values that is not 'call' or 'sms'.
 // * display the latest total on the screen.
 // * check the value thresholds and display the total value in the right color.
-function radioButtonBill(){
-    // var billItemTypeWithSettings = document.querySelector(".billItemTypeWithSettings")
+function radioButtonBill() {
+    //   var billItemTypeWithSettings = document.querySelector(".billItemTypeWithSettings")
     var checkedRadioButton = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-    console.log('Before IF')
-    console.log(warningLevel)
-    console.log(typeof (warningLevel))
-    if(checkedRadioButton){
-    //console.log('after IF')
-        var billItemTypeWithSettings = checkedRadioButton.value 
-    //console.log(billItemTypeWithSettings)
-    
+    if (checkedRadioButton) {
+        var billItemTypeWithSettings = checkedRadioButton.value
 
-        if(billItemTypeWithSettings === "call"){
-            if(totalThree + callCost <= criticalLevel){
+        if (totalThree < criticalLevel) {
+            if (billItemTypeWithSettings === "call") {
                 callTotalThree += callCost
                 totalThree += callCost;
-                console.log("inside")
             }
-            // callTotalThree += callCost
-            // totalThree += callCost;
-            // console.log("inside")
-        }
-        if(billItemTypeWithSettings === "sms"){
-            if(totalThree + smsCost <= criticalLevel){
+
+            if (billItemTypeWithSettings === "sms") {
                 smsTotalThree += smsCost
                 totalThree += smsCost
             }
-            // smsTotalThree += smsCost
-            // totalThree += callCost
-            // console.log("inside sms")
         }
+
     }
-    // console.log(callTotalThree)
     callTotalSettings.innerHTML = callTotalThree.toFixed(2)
     smsTotalSettings.innerHTML = smsTotalThree.toFixed(2)
     //totalThree = callTotalThree + smsTotalThree;
@@ -72,27 +58,27 @@ function radioButtonBill(){
     warningLevel = parseFloat(warningLevelSetting)
     criticalLevel = parseFloat(criticalLevelSetting)
 
-    if(totalThree < warningLevel){
+    if (totalThree < warningLevel) {
         grandTotal.classList.remove("danger")
         grandTotal.classList.remove("warning")
     }
-    
 
-    if(totalThree >= warningLevel){
+
+    if (totalThree >= warningLevel) {
         grandTotal.classList.add("warning")
         grandTotal.classList.remove("danger")
-        
+
     }
-    if(totalThree >= criticalLevel){
+    if (totalThree >= criticalLevel) {
         grandTotal.classList.add("danger")
         grandTotal.classList.remove("warning")
-        
+
     }
 
 }
-addButton.addEventListener("click",radioButtonBill)
+addButton.addEventListener("click", radioButtonBill)
 
-function settingsBill(){
+function settingsBill() {
     var callCostSetting = document.querySelector(".callCostSetting").value
     var smsCostSetting = document.querySelector(".smsCostSetting").value
     var warningLevelSetting = document.querySelector(".warningLevelSetting").value
@@ -102,22 +88,21 @@ function settingsBill(){
     warningLevel = parseFloat(warningLevelSetting)
     criticalLevel = parseFloat(criticalLevelSetting)
 
-    if(totalThree < warningLevel){
+    if (totalThree < warningLevel) {
         grandTotal.classList.remove("danger")
         grandTotal.classList.remove("warning")
     }
-    
 
-    if(totalThree >= warningLevel){
+
+    if (totalThree >= warningLevel) {
         grandTotal.classList.add("warning")
         grandTotal.classList.remove("danger")
-        
+
     }
-    if(totalThree >= criticalLevel){
+    if (totalThree >= criticalLevel) {
         grandTotal.classList.add("danger")
         grandTotal.classList.remove("warning")
-        
+
     }
-    
 }
 updateSettings.addEventListener("click", settingsBill)
