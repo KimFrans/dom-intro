@@ -8,8 +8,8 @@ var totalTwo = document.querySelector(".totalTwo")
 var orange = document.querySelector(".orange")
 //create a variable that will keep track of the total bill
 var total = 0;
-var callTotal = 0;
-var smsTotal = 0;
+var call = 0;
+var sms = 0;
 //add an event listener for when the add button is pressed
 
 //in the event listener get the value from the billItemTypeRadio radio buttons
@@ -22,16 +22,16 @@ function radioButtonBill(){
     if(checkedRadioBtn){
         var billItemType = checkedRadioBtn.value 
         if(billItemType === "call"){
-            callTotal += 2.75
+            call += 2.75
         }
         if(billItemType === "sms"){
-            smsTotal += 0.75
+            sms += 0.75
         }
     }
 
-    callTotalTwo.innerHTML = callTotal.toFixed(2)
-    smsTotalTwo.innerHTML = smsTotal.toFixed(2)
-    var total = callTotal + smsTotal
+    callTotalTwo.innerHTML = call.toFixed(2)
+    smsTotalTwo.innerHTML = sms.toFixed(2)
+    var total = call + sms
     totalTwo.innerHTML = total.toFixed(2)
 
     if(total >= 30 && total <= 49){
