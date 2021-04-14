@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js"></script>
+</head>
+<body>
+
+    <div id="mocha"></div>
+    <script>
+        mocha.setup('bdd');
+        var assert = chai.assert;
+    </script>
+
+    <script src="../dom-tests/factory-functions/calculate-bill.js"></script>
+    <script src="../dom-tests/tests/calculate-bill.test.js"></script>
+
+    <script src="../dom-tests/factory-functions/text-bill.js"></script>
+    <script src="../dom-tests/tests/text-bill.test.js"></script>
+
+    <script src="../dom-tests/factory-functions/radio-bill.js"></script>
+    <script src="../dom-tests/tests/radio-bill.test.js"></script>
+
+    <script src="../dom-tests/factory-functions/bill-with-settings.js"></script>
+    <script src="../dom-tests/tests/bill-with-settings.test.js"></script>
+
+
+    <script>  
+        mocha.checkLeaks();
+        mocha.run();
+    </script>
+    
+</body>
+</html>
