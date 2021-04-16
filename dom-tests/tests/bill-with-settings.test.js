@@ -53,11 +53,11 @@ describe('bill with settings', function(){
         settingsBill.setCallCost(1.25);
         settingsBill.setSmsCost(0.75);
 
-        settingsBill.makeCall();
-        settingsBill.makeCall();
-        settingsBill.makeCall();
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
 
-        assert.equal(3.75, settingsBill.getTotalCost());
+        assert.equal(3.75, settingsBill.getTotalSettingsBill());
         assert.equal(3.75, settingsBill.getTotalCallCost());
         assert.equal(0.00, settingsBill.getTotalSmsCost());
     });
@@ -69,10 +69,10 @@ describe('bill with settings', function(){
         settingsBill.setCallCost(1.85)
         settingsBill.setSmsCost(0.75)
 
-        settingsBill.makeCall()
-        settingsBill.makeCall()
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
 
-        assert.equal(3.70, settingsBill.getTotalCost())
+        assert.equal(3.70, settingsBill.getTotalSettingsBill())
         assert.equal(3.70, settingsBill.getTotalCallCost())
         assert.equal(0.00, settingsBill.getTotalSmsCost())
     });
@@ -84,10 +84,10 @@ describe('bill with settings', function(){
         settingsBill.setCallCost(1.85)
         settingsBill.setSmsCost(0.85)
 
-        settingsBill.sendSms()
-        settingsBill.sendSms()
+        settingsBill.radioButtonSettings("sms");
+        settingsBill.radioButtonSettings("sms");
 
-        assert.equal(1.70, settingsBill.getTotalCost())
+        assert.equal(1.70, settingsBill.getTotalSettingsBill())
         assert.equal(0.00, settingsBill.getTotalCallCost())
         assert.equal(1.70, settingsBill.getTotalSmsCost())
     });
@@ -99,11 +99,11 @@ describe('bill with settings', function(){
         settingsBill.setCallCost(1.35)
         settingsBill.setSmsCost(0.85)
 
-        settingsBill.sendSms()
-        settingsBill.sendSms()
-        settingsBill.makeCall()
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("sms");
+        settingsBill.radioButtonSettings("sms");
 
-        assert.equal(3.05, settingsBill.getTotalCost())
+        assert.equal(3.05, settingsBill.getTotalSettingsBill())
         assert.equal(1.35, settingsBill.getTotalCallCost())
         assert.equal(1.70, settingsBill.getTotalSmsCost())
     });
@@ -119,10 +119,10 @@ describe('warning and critical level', function(){
         settingsBill.setWarninglLevel(5)
         settingsBill.setCriticalLevel(10)
         
-        settingsBill.makeCall()
-        settingsBill.makeCall()
-        settingsBill.makeCall()
-        settingsBill.makeCall()
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
 
         assert.equal("warning", settingsBill.totalClassName1())
 
@@ -136,10 +136,11 @@ describe('warning and critical level', function(){
         settingsBill.setWarninglLevel(5)
         settingsBill.setCriticalLevel(10)
 
-        settingsBill.makeCall()
-        settingsBill.makeCall()
-        settingsBill.makeCall()
-        settingsBill.makeCall()
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        
 
         assert.equal("critical", settingsBill.totalClassName())
 
@@ -152,13 +153,13 @@ describe('warning and critical level', function(){
         settingsBill.setSmsCost(0.85)
         settingsBill.setCriticalLevel(10)
 
-        settingsBill.makeCall()
-        settingsBill.makeCall()
-        settingsBill.makeCall()
-        settingsBill.makeCall()
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
+        settingsBill.radioButtonSettings("call");
 
         assert.equal("critical", settingsBill.totalClassName())
-        assert.equal(10, settingsBill.getTotalCallCost())
+        assert.equal(10, settingsBill.getTotalSettingsBill())
 
     });
 
