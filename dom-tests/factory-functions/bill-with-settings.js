@@ -5,17 +5,21 @@ function BillWithSettings(){
     var theCriticalLevel = 0;
     var callCostTotal = 0;
     var smsCostTotal = 0;
+    var totalSetting = 0;
+    var callRadioSetting = 0;
+    var smsRadioSetting = 0;
 
     function setCallCost(callCost){
-        theCallCost = callCost
+        theCallCost = parseFloat(callCost)
     }
 
     function getCallCost(){
         return theCallCost;
     }
 
+
     function setSmsCost(smsCost){
-        theSmsCost = smsCost
+        theSmsCost =  parseFloat(smsCost)
     }
 
     function getSmsCost(){
@@ -23,7 +27,7 @@ function BillWithSettings(){
     }
 
     function setWarninglLevel(warningLevel){
-        theWarningLevel = warningLevel
+        theWarningLevel = parseFloat(warningLevel)
     }
 
     function getWarningLevel(){
@@ -31,7 +35,7 @@ function BillWithSettings(){
     }
 
     function setCriticalLevel(criticalLevel){
-        theCriticalLevel = criticalLevel
+        theCriticalLevel = parseFloat(criticalLevel)
     }
 
     function getCriticalLevel(){
@@ -44,16 +48,16 @@ function BillWithSettings(){
         }  
     }
 
-    function getTotalCost(){
-        return callCostTotal + smsCostTotal
-    }
+    // function getTotalCost(){
+    //     return (callCostTotal + smsCostTotal).toFixed(2)
+    // }
 
     function getTotalCallCost(){
-        return callCostTotal
+        return callRadioSetting.toFixed(2); 
     }
 
     function getTotalSmsCost(){
-        return smsCostTotal;
+        return smsRadioSetting.toFixed(2);
     }
 
     function sendSms(){
@@ -63,11 +67,11 @@ function BillWithSettings(){
     }
     
     function hasReachedCriticalLevel(){
-        getTotalCost() >= getCriticalLevel()
+        getTotalSettingsBill() >= getCriticalLevel()
     }
 
     function totalClassName1(){
-        if(getTotalCost() >= getWarningLevel()){
+        if(getTotalSettingsBill() >= getWarningLevel()){
             return "warning"
         }
     }
@@ -82,6 +86,25 @@ function BillWithSettings(){
         // }
     }
 
+    function radioButtonSettings(radioTypeSettings){
+        if(totalSetting < theCriticalLevel){
+            if(radioTypeSettings === "call"){
+                callRadioSetting += theCallCost
+                totalSetting += theCallCost
+            }
+            if(radioTypeSettings === "sms"){
+                smsRadioSetting += theSmsCost
+                totalSetting += theSmsCost
+            }
+        }
+        
+    }
+
+    function getTotalSettingsBill(){
+        console.log("callRa " + typeof smsRadioSetting)
+        return totalSetting.toFixed(2)
+    }
+
 
     return {
         setCallCost,
@@ -93,12 +116,14 @@ function BillWithSettings(){
         setCriticalLevel,
         getCriticalLevel,
         makeCall,
-        getTotalCost,
+        // getTotalCost,
         getTotalCallCost,
         getTotalSmsCost,
         sendSms,
         totalClassName,
         hasReachedCriticalLevel,
-        totalClassName1
+        totalClassName1,
+        radioButtonSettings,
+        getTotalSettingsBill,
     }
 }

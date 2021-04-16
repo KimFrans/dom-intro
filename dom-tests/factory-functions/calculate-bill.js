@@ -1,10 +1,9 @@
-function calculateButton(billString){
+function calculateButton(bbillString){
 
     var total = 0;
-    //var billTotal = document.querySelector(".billTotal");
-    //var billString = " ";  //document.querySelector(".billString").value;
-    var split = billString.split(',');
-    //var row = document.querySelector(".billTotal");
+    
+    var split = bbillString.split(',');
+    
     for(var i=0;i<split.length;i++){
         var trimSplit = split[i].trim();
         if(trimSplit === "call"){
@@ -15,6 +14,13 @@ function calculateButton(billString){
         }
     }  
     var round = total.toFixed(2); 
-    
-    return round;
+
+    function finalTotal(){
+        return {
+            round : round
+        }
+    }
+    return {
+        finalTotal
+    }
 }
