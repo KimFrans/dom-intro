@@ -31,6 +31,7 @@ function radioButtonBill1(){
     // radioFunc.radioButtonSms(checkedRadioBtn11.value)
     console.log(checkedRadioBtn11.value)
 
+
     callTotalTwo.innerHTML = radioFunc.getCall()
     smsTotalTwo.innerHTML = radioFunc.getSms()
     //var total = call + sms
