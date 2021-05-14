@@ -23,24 +23,19 @@ var addToBillBtn = document.querySelector(".addToBillBtn");
 var textFunc = Bill1();
 
 function textBillTotal(){
-
-    textFunc.billTotal1(billTypeTextVal.value);
-    // if(billTypeText === "call"){
-    //     callsTotal += 2.75;
-    // }
-    // else if (billTypeText === "sms"){
-    //     smsTotal += 0.75;
-    // }
+ // get a reference to the template script tag
+        var templateSource = document.querySelector(".templateBill").innerHTML;
     
-     //console.log(textFunc.getTotal1().total)
-     //callTotalOne.innerHTML = callsTotal.toFixed(2);
-     //smsTotalOne.innerHTML = smsTotal.toFixed(2);
-     //var totalBill = callsTotal + smsTotal;
-     //totalOne.innerHTML = totalBill.toFixed(2);
-    //  console.log(textFunc.callTotal())
-     callTotalOne.innerHTML = textFunc.getCallTotal()
-     smsTotalOne.innerHTML = textFunc.getSmsTotal()
-     totalOne.innerHTML = textFunc.totalBill()
+        // compile the template
+        var userTemplate = Handlebars.compile(templateSource);
+        
+    textFunc.billTotal1(billTypeTextVal.value);
+    //  callTotalOne.innerHTML = textFunc.getCallTotal()
+     callTotalOne.innerHTML = userTemplate({ CallTotal: textFunc.getCallTotal()}) 
+    //  smsTotalOne.innerHTML = textFunc.getSmsTotal()
+     smsTotalOne.innerHTML = userTemplate({ SMSTotal: textFunc.getSmsTotal()})
+    //  totalOne.innerHTML = textFunc.totalBill()
+     totalOne.innerHTML = userTemplate({ Total: textFunc.totalBill()})
 
     if(textFunc.totalBill() > 30 && textFunc.totalBill() <= 49){
         if(red.classList.toggle("danger")){
@@ -54,5 +49,10 @@ function textBillTotal(){
         }
         red.classList.add("danger")
     }
+
+
+       
+    
+
 }
 addToBillBtn.addEventListener("click",textBillTotal);

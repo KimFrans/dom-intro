@@ -21,25 +21,26 @@ var billItemTypeRadio = document.querySelector(".billItemTypeRadio")
 var radioFunc = radioButtonBill()
 
 function radioButtonBill1(){
-    //var billItemTypeRadio = document.querySelector(".billItemTypeRadio")
+    var templateSource = document.querySelector(".templateBill").innerHTML;
+    
+        // compile the template
+    var userTemplate = Handlebars.compile(templateSource);
+
     var checkedRadioBtn11 = document.querySelector("input[name='billItemType']:checked");
     radioFunc.radioButton(checkedRadioBtn11.value)
     // radioFunc.radioButtonSms(checkedRadioBtn11.value)
     console.log(checkedRadioBtn11.value)
-    // if(checkedRadioBtn){
-    //     var billItemTypeRadio = checkedRadioBtn.value 
-    //     if(billItemTypeRadio === "call"){
-    //         call += 2.75
-    //     }
-    //     if(billItemTypeRadio === "sms"){
-    //         sms += 0.75
-    //     }
-    // }
 
     callTotalTwo.innerHTML = radioFunc.getCall()
     smsTotalTwo.innerHTML = radioFunc.getSms()
     //var total = call + sms
     totalTwo.innerHTML = radioFunc.GrandTotal()
+
+    callTotalTwo.innerHTML = userTemplate({ CallTotal: radioFunc.getCall()}) 
+    //  smsTotalOne.innerHTML = textFunc.getSmsTotal()
+     smsTotalTwo.innerHTML = userTemplate({ SMSTotal: radioFunc.getSms()})
+    //  totalOne.innerHTML = textFunc.totalBill()
+     totalTwo.innerHTML = userTemplate({ Total: radioFunc.GrandTotal()})
 
     if(radioFunc.GrandTotal() >= 30 && radioFunc.GrandTotal() <= 49){
         if(orange.classList.toggle("danger")){
